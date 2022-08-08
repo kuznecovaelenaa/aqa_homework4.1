@@ -32,16 +32,16 @@ public class CardDeliveryTest {
     }
 
     @Test
-    void firstTest() {
+    void shouldBeValidTest() {
         $("[data-test-id='city'] input").setValue("Москва");
-        $("[data-test-id='date'] input").sendKeys(Keys.CONTROL + "A");
-        $("[data-test-id='date'] input").sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id='date'] input").sendKeys(dataCalendar());
-        $("[data-test-id='name'] input").setValue("Кузнецова Елена");
-        $("[data-test-id='phone'] input").setValue("+79150882118");
+        $("[data-test-id='date'] .input__control").sendKeys(Keys.CONTROL + "A");
+        $("[data-test-id='date'] .input__control").sendKeys(Keys.BACK_SPACE);
+        $("[data-test-id='date'] .input__control").sendKeys(dataCalendar());
+        $("[data-test-id='name'] .input__control").setValue("Кузнецова-Иванова Елена");
+        $("[data-test-id='phone'] .input__control").setValue("+79150882118");
         $("[data-test-id='agreement']").click();
         $$("button").find(exactText("Забронировать")).click();
-        $("[data-test-id='notification']").shouldBe(visible, Duration.ofSeconds(15));
+        $("[data-test-id='notification'] .notification__content").shouldBe(visible, Duration.ofSeconds(15));
         $("[data-test-id='notification']").shouldHave(text("Встреча успешно забронирована на " + dataCalendar()));
     }
 }
